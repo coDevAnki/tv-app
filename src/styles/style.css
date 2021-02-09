@@ -1,0 +1,7 @@
+body {
+  background-color: thistle;
+  font-size: 2rem;
+  --black: black;
+  color: var(--black);
+  display: flex;
+}

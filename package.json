@@ -3,7 +3,11 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "start": "webpack serve",
+    "build": "webpack",
+    "watch": "webpack --watch"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",

@@ -1,0 +1,15 @@
+.remote-container {
+  width: 65px;
+  height: 100px;
+  border: 2px solid;
+  position: absolute;
+  z-index: 100;
+  bottom: 0;
+  border-radius: 10px;
+  background-color: darkslategray;
+  /* transition: 0.5s; */
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  top: 65%;
+  left: 48%;
+}

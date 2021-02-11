@@ -1,12 +1,3 @@
 import { render } from "react-dom";
-import "./styles/style.css";
-
-const Component = () => <div>Hello I am react</div>;
-
-let h = { webpack: "working" };
-console.log(h);
-console.log("hello");
-let d = { ...h, babel: "working on" };
-console.log("new ", d);
-
-render(<Component />, document.getElementById("root"));
+import App from "./Components/App";
+render(<App />, document.getElementById("root"));

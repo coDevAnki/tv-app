@@ -22,7 +22,7 @@ const TV = () => {
       ></div>
       <div className="tv-deck"></div>
     </div>
-    <Remote><div>remote</div></Remote>
+    <Remote><div>my remote</div></Remote>
     </>
   );
 };

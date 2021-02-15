@@ -49,7 +49,7 @@ const SearchBar = () => {
   };
 
   return (
-    <div className="search-bar-conteiner">
+    <div className="search-bar-container">
       <form onSubmit={onFormSubmit} className="ui form">
         <div className="search-field">
           <input

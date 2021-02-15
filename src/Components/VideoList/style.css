@@ -1,0 +1,10 @@
+.video-list-container {
+  margin: 40px 0;
+  display: grid;
+  width: 95%;
+  margin: auto;
+  height: max-content;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-auto-rows: 300px;
+  gap: 30px;
+}

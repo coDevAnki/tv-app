@@ -1,9 +1,18 @@
 import React, { useEffect, useRef } from "react";
+import { useVideosDispatch, useVideosState } from "../../context";
+// import { selectVideoAction } from "../../context/actions";
+import useYoutubeScript from "../../custom-hooks/useYoutubeScript";
 import Remote from "../Remote";
 import "./style.css";
 
 const TV = () => {
+  const { videos, selectedVideo } = useVideosState();
+  const videosDispatch = useVideosDispatch();
   const tvRef = useRef();
+  const someRef = useRef("The Ref");
+  const selectedVideoId = selectedVideo?.id?.videoId;
+  const player = useYoutubeScript("youtubeplayer", selectedVideoId);
+
   useEffect(() => {
     console.log(tvRef.current);
   });

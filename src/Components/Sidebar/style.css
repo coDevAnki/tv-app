@@ -1,0 +1,41 @@
+.sidebar_container {
+  width: 50%;
+  max-width: 300px;
+  background-color: var(--sidebar-clr);
+  height: 100vh;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 1000;
+  font-size: 1.2rem;
+}
+.close_icon {
+  color: white;
+  cursor: pointer;
+  margin-left: auto;
+  margin-right: 5px;
+  width: min-content;
+}
+.nav_item_container {
+  background-color: white;
+  padding: 0.5em;
+  margin-top: 1rem;
+  width: 92%;
+  border-radius: 25px;
+}
+.nav_item_container label {
+  cursor: pointer;
+}
+.nav_item_container a,
+.nav_item_container a:visited {
+  text-decoration: none;
+  color: black;
+}
+.nav_item {
+  margin-left: 20px;
+  margin-right: 10px;
+}
+.channel_link {
+  background-color: lightgreen;
+  cursor:pointer;
+}

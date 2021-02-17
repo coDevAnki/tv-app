@@ -3,7 +3,7 @@ import { useVideosDispatch } from "../../context";
 import { selectVideoAction } from "../../context/actions";
 import "./style.css";
 
-const VideoItem = ({ thisVideo, channel }) => {
+const VideoItem = ({ thisVideo, channel, isSelected }) => {
   const videoDispatch = useVideosDispatch();
   const onvideoBeingSelected = (e) => {
     selectVideoAction(videoDispatch)(thisVideo);
@@ -18,7 +18,9 @@ const VideoItem = ({ thisVideo, channel }) => {
       </div>
       <div className="video-footer-container">
         <div className="video-title">{thisVideo.snippet.title}</div>
-        <button className="set-channel-button">{channel}</button>
+        <button className="set-channel-button" data-nowPlaying={isSelected}>
+          {channel}
+        </button>
       </div>
     </div>
   );

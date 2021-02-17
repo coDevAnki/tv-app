@@ -1,6 +1,11 @@
 import { useEffect, useRef, useState } from "react";
 
-const useYoutubeScript = (iframeId, videoId, watchList = [videoId]) => {
+const useYoutubeScript = ({
+  iframeId,
+  videoId,
+  onStateChange,
+  watchList = [videoId],
+}) => {
   const [player, setPlayer] = useState();
   const scriptOnceMade = useRef(false);
 
@@ -18,15 +23,19 @@ const useYoutubeScript = (iframeId, videoId, watchList = [videoId]) => {
           videoId,
           playerVars: {
             controls: 0,
-            autoplay: true,
+            autoplay: 1,
           },
           events: {
             onReady: onPlayerReady,
             onStateChange: onPlayerStateChange,
           },
         });
-        console.log("c");
-        function onPlayerStateChange(event) {}
+
+        function onPlayerStateChange(event) {
+          if (onStateChange) {
+            onStateChange(event);
+          }
+        }
         function onPlayerReady(event) {
           setPlayer(ytPlayer);
           console.log(event.target);

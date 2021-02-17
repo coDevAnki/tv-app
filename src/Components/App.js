@@ -1,22 +1,15 @@
-import React from "react";
+import React,{useState} from "react";
 import VideosProvider from "../context";
 import "./globalStyles.css";
-import SearchBar from "./SearchBar";
+import SidebarController from "./SidebarController";
 import TV from "./TV";
 import VideoList from "./videoList";
 
 const App = () => {
-  console.log(process.env.NODE_ENV);
   return (
     <VideosProvider>
-      <SearchBar />
+     <SidebarController/>
       <TV />
-      {/* <VideoDetail
-          video={selectedVideo}
-          videos={videos}
-          selectVideo={setSelectedVideo}
-        /> */}
-
       <VideoList />
     </VideosProvider>
   );

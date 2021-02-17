@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useReducer } from "react";
 import { videosReducer } from "./reducers";
-const initialVideos = { videos: [], selectedVideo: null };
+const initialVideos = { videos: [], selectedVideo: null, searchedTerm:null };
 
 const VideosStateContext = createContext();
 const VideosDispatchContext = createContext();

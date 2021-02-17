@@ -1,2 +1,3 @@
 export const GET_VIDEOS = "GET_VIDEOS";
 export const SELECT_VIDEO = "SELECT_VIDEO";
+export const SET_SEARCHED_TERM = "SET_SEARCHED_TERM";

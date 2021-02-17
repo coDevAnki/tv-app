@@ -8,3 +8,13 @@
   grid-auto-rows: 300px;
   gap: 30px;
 }
+.channel-section-container {
+  position: relative;
+  width: 100%;
+}
+.go-to-tv-icon {
+  position: sticky;
+  font-size: 1.2rem;
+  top: 10%;
+  cursor: pointer;
+}

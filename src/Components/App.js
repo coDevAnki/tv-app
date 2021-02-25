@@ -3,7 +3,7 @@ import Footer from "./Footer";
 import "./globalStyles.css";
 import SidebarController from "./SidebarController";
 import TV from "./TV";
-import VideoList from "./videoList";
+import VideoList from "./VideoList";
 
 const App = () => {
   return (

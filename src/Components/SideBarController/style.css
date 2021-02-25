@@ -24,10 +24,15 @@
   justify-content: center;
   align-items: center;
 }
-.hero-heading {
+.hero-heading, .hero-subheading{
   color: blue;
   text-align: center;
 }
+
+.hero-heading{
+  margin:0;
+}
+
 .btn-cta {
   font-size: 22px;
   padding: 10px 1em;

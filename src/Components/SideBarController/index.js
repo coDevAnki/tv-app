@@ -28,7 +28,10 @@ const SidebarController = () => {
       </div>
       {searchedTerm ? null : (
         <header className="hero-container">
-          <h1 className="hero-heading">WATCH YOUR FAVOURITE VIDEOS ON TV</h1>
+       <h1 className="hero-heading">LETS WATCH TV</h1>
+
+          <h5 className="hero-subheading">FAMILIAR EXPERIENCE IN AN EXCLUSIVE WAY</h5>
+
           <button className="btn-cta" onClick={openSidebar}>
             Get Started
           </button>

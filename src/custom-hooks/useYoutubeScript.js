@@ -8,12 +8,8 @@ const useYoutubeScript = ({
 }) => {
   const [player, setPlayer] = useState();
   const scriptOnceMade = useRef(false);
-
-  useEffect(() => {
-    console.log("a", videoId);
-    if (videoId && !scriptOnceMade.current) {
-      console.log("b");
-      var tag = document.createElement("script");
+  const initScript= ()=>{
+  var tag = document.createElement("script");
       var firstScriptTag = document.getElementsByTagName("script")[0];
       firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
       tag.src = "https://www.youtube.com/iframe_api";
@@ -22,7 +18,7 @@ const useYoutubeScript = ({
         let ytPlayer = new window.YT.Player(iframeId, {
           videoId,
           playerVars: {
-            controls: 0,
+            controls: 1,
             autoplay: 1,
           },
           events: {
@@ -38,11 +34,15 @@ const useYoutubeScript = ({
         }
         function onPlayerReady(event) {
           setPlayer(ytPlayer);
-          console.log(event.target);
           event.target.playVideo();
+          event.target.setVolume(70);
         }
       };
-      scriptOnceMade.current = true;
+      scriptOnceMade.current = true;}
+
+  useEffect(() => {
+    if (videoId && !scriptOnceMade.current ) {
+     initScript()
     } else if (videoId) {
       player.loadVideoById(videoId);
     }

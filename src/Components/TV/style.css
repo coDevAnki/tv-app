@@ -5,6 +5,7 @@
   box-shadow: inset 5px 5px 5px grey, inset -5px -5px 5px grey;
   margin: 20px auto;
   margin-bottom: 120px;
+  padding-bottom: 0.5%;
   position: relative;
   background: #000;
   perspective: 100px;
@@ -28,7 +29,13 @@
   z-index: 200;
   background: #000;
 }
-
+/* .company_logo {
+  position: absolute;
+  width: 20px;
+  height: 15px;
+  left: 45%;
+  bottom: 0;
+} */
 .channel-info {
   width: 50px;
   padding: 3px 6px;
@@ -48,22 +55,33 @@
   position: absolute;
   bottom: 10px;
   margin-left: 40%;
-  height: 6px;
-  width: 6px;
+  margin-right: 10px;
+  height: 5px;
+  width: 5px;
   border-radius: 50%;
   box-shadow: 2px 2px 5px var(--tv_light_color),
     -2px -2px 5px var(--tv_light_color);
 }
+.tv_company_logo {
+  position: absolute;
+  height: 8%;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: -5px;
+}
+.tv_company_logo .clipped {
+  bottom: 8px;
+  clip-path: polygon(0% 65%, 100% 65%, 100% 100%, 0% 100%);
+}
 .tv-deck {
   width: 80vw;
   height: 35px;
-  background: var(--body-clr);
+  background-color: var(--body-clr);
   border: 3px solid;
   position: absolute;
   top: 106%;
   left: 50%;
   transform: translateX(-50%) rotateX(45deg);
-  margin-bottom: 50px;
   z-index: 0;
 }
 .volume-bars-container {
@@ -72,10 +90,11 @@
   width: 70%;
   bottom: 10%;
   display: flex;
-  margin-left: 35%;
+  margin: 0 30%;
 }
 .volume-bar {
   width: 10px;
   height: 15px;
+  margin-left: 10px;
   background-color: blue;
 }

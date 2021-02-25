@@ -1,47 +1,40 @@
-import axios from "axios";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
+import wikipedia from "../../apis/wikipedia";
 import { useVideosDispatch } from "../../context";
 import { getVideosAction, setSearchedTermAction } from "../../context/actions";
+import useDebounce from "../../custom-hooks/useDebounce";
 import "./style.css";
 
 const SearchBar = () => {
   const [term, setTerm] = useState("");
   const [suggestions, setSuggestions] = useState([]);
   const videosDispatch = useVideosDispatch();
+  const [debouncedTerm] = useDebounce(term);
 
   useEffect(() => {
-    let searchWiki = async () => {
-      const { data } = await axios.get("https://en.wikipedia.org/w/api.php", {
-        params: {
-          action: "query",
-          list: "search",
-          origin: "*",
-          format: "json",
-          srsearch: term,
-        },
-      });
-      setSuggestions(data.query.search.map((result) => result.title));
-    };
-    if (!term) {
+    if (!debouncedTerm) {
+      setSuggestions([]);
+    } else {
+      (async () => {
+        const { data } = await wikipedia.get("", {
+          params: {
+            srsearch: debouncedTerm,
+          },
+        });
+        setSuggestions(data.query.search.map((result) => result.title));
+      })();
+    }
+  }, [debouncedTerm]);
+
+  useEffect(() => {
+    if (!debouncedTerm && suggestions.length) {
       setSuggestions([]);
     }
-    if (term && !suggestions.length) {
-      searchWiki();
-    } else {
-      const timeoutId = setTimeout(() => {
-        if (term) searchWiki();
-      }, 500);
-
-      return function () {
-        clearTimeout(timeoutId);
-      };
-    }
-  }, [term]);
+  }, [suggestions]);
 
   const onInputChange = (event) => {
     setTerm(event.target.value);
   };
-
   const onFormSubmit = (event) => {
     event.preventDefault();
     setSearchedTermAction(videosDispatch)(term);
@@ -67,6 +60,7 @@ const SearchBar = () => {
           onChange={onInputChange}
           placeholder="&#128269; search video"
           autoComplete="off"
+          autoFocus
         />
       </form>
       <div

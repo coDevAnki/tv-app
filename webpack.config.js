@@ -1,13 +1,27 @@
+const path = require("path");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const Dotenv = require("dotenv-webpack");
 
-
 module.exports = {
+  output: {
+    path: path.resolve(__dirname, "dist"),
+    assetModuleFilename: "assets/[hash][ext][query]",
+  },
   module: {
     rules: [
       {
+        test: /\.(png|jpe?g|gif|svg)$/,
+        type: "asset",
+      },
+      {
         test: /\.css$/i,
-        use: [MiniCssExtractPlugin.loader, "css-loader", "postcss-loader"],
+        use: [
+          { loader: MiniCssExtractPlugin.loader, options: { publicPath: "" } },
+          "css-loader",
+          "postcss-loader",
+        ],
       },
       {
         test: /\.jsx?$/,
@@ -18,7 +32,12 @@ module.exports = {
       },
     ],
   },
-  plugins: [new MiniCssExtractPlugin(), new Dotenv()],
+  plugins: [
+    new CleanWebpackPlugin(),
+    new MiniCssExtractPlugin(),
+    new HtmlWebpackPlugin({ template: "./src/public/index.html" }),
+    new Dotenv(),
+  ],
   resolve: {
     extensions: [".js", "./jsx"],
   },

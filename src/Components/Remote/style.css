@@ -1,12 +1,9 @@
 .remote-container {
-  --posX: 0;
-  --posY: 0;
   width: 65px;
   height: 80px;
   border: 2px solid;
   position: absolute;
-  z-index: 100;
-  bottom: 0;
+  z-index: 300;
   border-radius: 10px;
   background-color: darkslategray;
   display: grid;
@@ -15,8 +12,7 @@
   left: 50%;
   transform: translateX(-50%) rotateX(15deg);
   transform-style: preserve-3d;
-  cursor: url("https://res.cloudinary.com/codevanki/image/upload/v1613484595/icons/84bf61ebb409b589a1e7c2adae3c97fb.png_wh300_yastbk.png"),
-    grabbing;
+  cursor: url("../../assets/hand.svg"), grabbing;
 }
 .remote-container button {
   height: 0.6rem;
@@ -26,5 +22,6 @@
   font-size: 8px;
   padding-right: 10px;
   padding-bottom: 7px;
-  cursor: pointer;
+  outline: none;
+  cursor: url("../../assets/hold.svg"), pointer;
 }

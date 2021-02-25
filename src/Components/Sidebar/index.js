@@ -1,68 +1,67 @@
-import React, { useState } from "react";
-import { useVideosState } from "../../context";
-import hexToRGB from "../../helpers/hexToRGB";
+import React from "react";
+import { lg, panasonic, samsung, sony } from "../../assets";
+import {
+  useCustomizationDispatch,
+  useCustomizationState,
+  useVideosDispatch,
+  useVideosState,
+} from "../../context";
+import {
+  selectBgClrAction,
+  selectBodyClrAction,
+  selectLogoAction,
+} from "../../context/actions";
+import useClickOutside from "../../custom-hooks/useClickOutside";
 import SearchBar from "../SearchBar";
 import "./style.css";
 
-const Sidebar = ({ closeSidebar }) => {
-  const [clr1, setCLr1] = useState(
-    getComputedStyle(document.body).getPropertyValue("--bg-clr").trim()
-  );
-  const [clr2, setCLr2] = useState(
-    getComputedStyle(document.body).getPropertyValue("--body-clr").trim()
-  );
+const BRANDS = [
+  { name: "SONY", logo: sony },
+  { name: "SAMSUNG", logo: samsung },
+  { name: "LG", logo: lg },
+  { name: "PANASONIC", logo: panasonic },
+];
+const Sidebar = ({ closeSidebar, setShowUserGuide }) => {
+  const { bgClr, bodyClr } = useCustomizationState();
+  const customizationDispatch = useCustomizationDispatch();
   const { searchedTerm } = useVideosState();
-
-  const customizeBgClr = (e) => {
-    document.body.style.setProperty("--bg-clr", e.target.value);
-    setCLr1(e.target.value);
-  };
-  const customizeBodyClr = (e) => {
-    document.body.style.setProperty("--body-clr", e.target.value);
-    document.body.style.setProperty(
-      "--sidebar-clr",
-      hexToRGB(e.target.value, 0.8)
-    );
-    setCLr2(e.target.value);
-  };
+  const videosDispatch = useVideosDispatch();
+  const sidebarRef = useClickOutside(closeSidebar);
 
   return (
-    <div className="sidebar_container">
+    <div ref={sidebarRef} className="sidebar_container">
       <div onClick={closeSidebar} className="close_icon">
         &#9746;
       </div>
-      <SearchBar />
-      <div
-        className={`nav_item_container${searchedTerm ? " channel_link" : ""}`}
-      >
-        {searchedTerm ? (
-          <a
-            className="nav_item"
-            onClick={() =>
-              scroll({
+      {searchedTerm ? (
+        <div
+          className={`nav_item_container${searchedTerm ? " channel_link" : ""}`}
+          onClick={() => {
+            if (searchedTerm) {
+              scrollTo({
                 top: document
                   .getElementById("all-video-channels")
                   .getBoundingClientRect().top,
                 behavior: "smooth",
-              })
+              });
             }
-          >
-            Channels for "{searchedTerm}" &#128071;
-          </a>
-        ) : (
-          <label htmlFor="search_term_for_videos" className="nav_item">
-            Search for Channels
-          </label>
-        )}
-      </div>
+          }}
+        >
+          <a className="nav_item">Channels for "{searchedTerm}"</a>
+        </div>
+      ) : null}
+      <SearchBar />
+
       <nav>
         <div className="nav_item_container">
           <label className="nav_item" htmlFor="choose_clr1">
             Change Wall Color
           </label>
           <input
-            onChange={customizeBgClr}
-            value={clr1}
+            onChange={(e) => {
+              selectBgClrAction(customizationDispatch)(e.target.value);
+            }}
+            value={bgClr}
             id="choose_clr1"
             type="color"
           />
@@ -72,11 +71,39 @@ const Sidebar = ({ closeSidebar }) => {
             Change Desk Color
           </label>
           <input
-            onChange={customizeBodyClr}
-            value={clr2}
+            onChange={(e) => {
+              selectBodyClrAction(customizationDispatch)(e.target.value);
+            }}
+            value={bodyClr}
             id="choose_clr2"
             type="color"
           />
+        </div>
+        <div className="nav_item_container">
+          <div className="nav_item select_company">Select Company</div>
+          <div className="subbar_container">
+            <nav>
+              {BRANDS.map((brand) => (
+                <li
+                  className="subbar_item"
+                  onClick={() => {
+                    selectLogoAction(customizationDispatch)(brand);
+                  }}
+                >
+                  {brand.name}
+                </li>
+              ))}
+            </nav>
+          </div>
+        </div>
+        <div
+          className="nav_item_container"
+          onClick={() => {
+            setShowUserGuide(true);
+            closeSidebar();
+          }}
+        >
+          <div className="nav_item">User Guide</div>
         </div>
       </nav>
     </div>

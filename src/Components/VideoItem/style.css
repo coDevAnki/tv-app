@@ -6,7 +6,7 @@
   color: white;
   background-color: var(--body-clr);
   font-weight: 500;
-
+  cursor: pointer;
   border-radius: 10px;
 }
 .video-item-container .thumnail-conatiner {
@@ -18,7 +18,9 @@
   height: 100%;
   object-fit: cover;
 }
-
+.video-item-container:hover {
+  text-decoration: underline;
+}
 .set-channel-button {
   padding: 0.5em;
   border-radius: 50%;
@@ -26,7 +28,6 @@
   height: 60px;
   right: 0;
   font-size: 1.3rem;
-  cursor: pointer;
   outline: none;
   border: none;
   align-self: baseline;
@@ -40,6 +41,7 @@
 }
 .video-title {
   width: 75%;
+  mix-blend-mode: difference;
 }
 button[data-nowPlaying="true"] {
   background-color: greenyellow;

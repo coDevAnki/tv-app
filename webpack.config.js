@@ -35,7 +35,10 @@ module.exports = {
   plugins: [
     new CleanWebpackPlugin(),
     new MiniCssExtractPlugin(),
-    new HtmlWebpackPlugin({ template: "./src/public/index.html" }),
+    new HtmlWebpackPlugin({
+      template: "./src/public/index.html",
+      favicon: "./src/public/favicon.ico",
+    }),
     new Dotenv(),
   ],
   resolve: {

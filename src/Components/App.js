@@ -1,7 +1,7 @@
 import VideosProvider, { CustomizationProvider } from "../context";
 import Footer from "./Footer";
 import "./globalStyles.css";
-import SidebarController from "./SidebarController";
+import Sidebarcontroller from "./Sidebarcontroller";
 import TV from "./TV";
 import VideoList from "./VideoList";
 
@@ -9,7 +9,7 @@ const App = () => {
   return (
     <VideosProvider>
       <CustomizationProvider>
-        <SidebarController />
+        <Sidebarcontroller />
         <TV />
       </CustomizationProvider>
       <VideoList />
